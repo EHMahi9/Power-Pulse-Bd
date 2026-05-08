@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" role="img" aria-labelledby="title desc">
+  <title id="title">Bangladesh outage coverage diagram</title>
+  <desc id="desc">Simplified regional coverage diagram for PowerPulse BD.</desc>
+  <rect width="520" height="360" fill="#f6f8fb"/>
+  <path d="M294 37c39 8 52 39 48 69 32 11 45 37 36 73 33 15 46 41 36 78-8 32-35 51-68 52-14 21-38 31-67 26-22 18-52 18-76 2-25 3-52-7-65-31-25-5-43-24-45-50-19-16-24-43-13-66-14-29-4-60 23-77 3-31 27-54 60-56 29-26 70-33 131-20z" fill="#ffffff" stroke="#c9d3df" stroke-width="3"/>
+  <path d="M165 103c34-22 74-29 122-20 22 5 37 19 45 39" fill="none" stroke="#f2b84b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M116 185c44-6 84 2 119 25 30 19 63 29 104 28" fill="none" stroke="#1f9d8a" stroke-width="7" stroke-linecap="round"/>
+  <path d="M186 302c30-26 65-36 104-29 37 7 63-4 87-29" fill="none" stroke="#1c4d8f" stroke-width="7" stroke-linecap="round"/>
+  <g fill="#c94343">
+    <circle cx="190" cy="116" r="9"/>
+    <circle cx="252" cy="206" r="11"/>
+    <circle cx="322" cy="259" r="9"/>
+  </g>
+  <g fill="#2d8a57">
+    <circle cx="300" cy="96" r="8"/>
+    <circle cx="142" cy="245" r="8"/>
+    <circle cx="374" cy="182" r="8"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="14" fill="#172033">
+    <text x="180" y="95">Sylhet</text>
+    <text x="267" y="201">Dhaka</text>
+    <text x="331" y="281">Noakhali</text>
+    <text x="315" y="82">Rangpur</text>
+    <text x="83" y="257">Khulna</text>
+    <text x="385" y="174">Chattogram</text>
+  </g>
+</svg>

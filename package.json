@@ -1,0 +1,21 @@
+{
+  "name": "powerpulse-bd",
+  "version": "1.0.0",
+  "description": "Stage 1 Bangladesh-focused loadshedding and solar backup web application for SE 236.",
+  "private": true,
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "dev": "node backend/src/server.js",
+    "test:solar": "node backend/tests/solar.test.js",
+    "test:api": "node backend/tests/api-smoke.test.js"
+  },
+  "keywords": [
+    "bangladesh",
+    "loadshedding",
+    "solar",
+    "web-programming",
+    "oop"
+  ],
+  "author": "PowerPulse BD",
+  "license": "MIT"
+}
