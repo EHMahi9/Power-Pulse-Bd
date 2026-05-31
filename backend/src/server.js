@@ -37,18 +37,28 @@ function route(method, pattern, handler, readsBody = false) {
 
 function createServer() {
   return http.createServer(async (req, res) => {
+
+    // CORS HEADERS
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
     const requestUrl = new URL(req.url, "http://localhost");
 
+    // HANDLE PREFLIGHT REQUESTS
     if (req.method === "OPTIONS") {
-      sendJson(res, 204, {});
+      res.writeHead(204);
+      res.end();
       return;
     }
 
+    // API ROUTES
     if (requestUrl.pathname.startsWith("/api/")) {
       await handleApi(req, res, requestUrl);
       return;
     }
 
+    // STATIC FRONTEND
     serveStatic(req, res, env.frontendDir);
   });
 }
@@ -71,7 +81,9 @@ async function handleApi(req, res, requestUrl) {
     }
 
     const body = match.route.readsBody ? await readBody(req) : {};
+
     const user = authMiddleware.optionalUser(req);
+
     const ctx = {
       body,
       params: match.match.groups || {},
@@ -79,9 +91,13 @@ async function handleApi(req, res, requestUrl) {
       req,
       user
     };
+
     const result = await match.route.handler(ctx);
+
     sendJson(res, result.status || 200, result.body || {});
+
   } catch (error) {
+
     if (error instanceof AppError) {
       sendError(res, error.statusCode, error.message, error.details);
       return;
@@ -93,6 +109,7 @@ async function handleApi(req, res, requestUrl) {
     }
 
     console.error(error);
+
     sendError(res, 500, "Unexpected server error.");
   }
 }
@@ -102,8 +119,13 @@ function createLimiter({ windowMs, max }) {
 
   return function limit(req) {
     const ip = req.socket.remoteAddress || "local";
+
     const now = Date.now();
-    const bucket = buckets.get(ip) || { count: 0, resetAt: now + windowMs };
+
+    const bucket = buckets.get(ip) || {
+      count: 0,
+      resetAt: now + windowMs
+    };
 
     if (now > bucket.resetAt) {
       bucket.count = 0;
@@ -111,6 +133,7 @@ function createLimiter({ windowMs, max }) {
     }
 
     bucket.count += 1;
+
     buckets.set(ip, bucket);
 
     if (bucket.count > max) {
@@ -121,6 +144,7 @@ function createLimiter({ windowMs, max }) {
 
 if (require.main === module) {
   const server = createServer();
+
   server.listen(env.port, () => {
     console.log(`PowerPulse BD running at http://localhost:${env.port}`);
   });
